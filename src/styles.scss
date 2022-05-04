@@ -1,0 +1,74 @@
+$size: 3rem;
+$padding: 0.5rem;
+/* offset-x | offset-y | blur-radius | color */
+$shadow: 0.25rem 0.25rem 0.5rem rgb(0 0 0 / 0.25);
+
+$background: rgb(0 0 0 / 0.8);
+$blue: #39f;
+
+.wb {
+    &,* {
+        transition: all 300ms ease-in-out;
+    }
+}
+
+@mixin addBorder {
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgray;
+}
+
+.wb-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $size;
+    height: $size;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    border-radius: 9999px;
+    padding: $padding;
+    box-shadow: $shadow;
+    background: $background;
+
+    &:hover {
+        transform: scale(1.2);
+        background-color: white;
+        @include addBorder();
+    }   
+}
+
+img {
+    filter: brightness(0) invert(1);
+    .wb-container:hover > & {
+       filter: none;
+    }
+}
+
+.wb-tooltip {
+    white-space: nowrap;
+    opacity: 0%;
+    position: absolute;
+    right: 0;
+    transform: translateX(- calc( $size + 3*$padding ));
+    z-index: 10;
+    box-shadow: $shadow;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgray;
+    background-color: $background;
+    font-weight: 700;
+
+    color:white;
+
+    .wb-container:hover > & {
+        opacity: 100%;
+        background-color: white;
+        color: $blue;
+        @include addBorder();
+    }
+}
