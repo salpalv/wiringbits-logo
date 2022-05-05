@@ -4,7 +4,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require("copy-webpack-plugin")
-const tsLoader = require('ts-loader')
 
 /** @returns { Configuration } */
 module.exports = (env, argv) => {
@@ -38,7 +37,7 @@ module.exports = (env, argv) => {
             }),
         ],
         output: {
-            filename: '[name].bundle.js',
+            filename: 'main.js',
             path: path.resolve(__dirname, 'dist'),
             clean: true
         },
@@ -47,7 +46,7 @@ module.exports = (env, argv) => {
                 {
                     test: /\.tsx?$/,
                     exclude: /node_modules/,
-                    use: [require.resolve('ts-loader')]
+                    use: ['ts-loader']
                 },
                 {
                     test: /\.s?css$/i,
@@ -59,14 +58,6 @@ module.exports = (env, argv) => {
                         // Compiles Sass to CSS
                         "sass-loader",
                     ],
-                },
-                {
-                    test: /\.(svg)$/i,
-                    type: 'asset/source',
-                },
-                {
-                    test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                    type: 'asset/resource',
                 }
             ],
         }
