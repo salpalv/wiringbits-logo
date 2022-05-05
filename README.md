@@ -2,6 +2,8 @@
 
 ![hover_screenshot](/docs/onHover.png)
 
+[![Edit wiringbits-logo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/saulpalv/wiringbits-logo/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
+
 ### Usage
 Include the js script in a HTML script tag and pass [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) parameters with `data-*` attributes
 
