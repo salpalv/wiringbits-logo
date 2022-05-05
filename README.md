@@ -45,4 +45,20 @@ The example above will generate the following url :
 https://wiringbits.net/?utm_source=localhost&utm_medium=referer
 ```
 
-##
+## Commands
+
+Requirements
+* Node 16
+
+```bash
+npm install
+```
+Testing
+```bash
+npm run dev
+```
+Build
+```bash
+npm run build
+```
+The generated main.js will be placed at the `./dist` folder, ready to be served from a CDN.
