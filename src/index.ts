@@ -2,6 +2,7 @@ import './styles.scss';
 
 type DatasetKeys =
   'img_src' |
+  'font_fam' |
   'tip' |
   'website' |
   'utm_id' |
@@ -25,22 +26,30 @@ function createElement() {
 
   const container = document.createElement("div")
   container.classList.add('wb', 'wb-container')
+  const { font_fam } = dataset
+  if (font_fam) {
+    container.style.fontFamily = font_fam
+  }
   if (utmUrl) {
     container.onclick = () => window.location.href = utmUrl
   }
+
   const tooltipEl = document.createElement('div')
   tooltipEl.classList.add('wb-tooltip')
   const { tip } = dataset
-  if (tip) { tooltipEl.textContent = tip }
-  container.appendChild(tooltipEl)
-
-  document.body.appendChild(container)
+  if (tip) {
+    tooltipEl.textContent = tip
+  }
 
   const logoRender = document.createElement('img')
   const { img_src } = dataset
-  if (img_src) { logoRender.src = img_src }
+  if (img_src) {
+    logoRender.src = img_src
+  }
 
   container.appendChild(logoRender)
+  container.appendChild(tooltipEl)
+  document.body.appendChild(container)
 }
 
 const utm_params: Array<DatasetKeys> = [

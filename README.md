@@ -13,6 +13,7 @@ Include the js script in a HTML script tag and pass [dataset](https://developer.
 <script 
     src="./main.js" 
     data-img_src="https://wiringbits.net/assets/branding/wiringbits-logo-mark-full-color-rgb.svg"
+    data-font_fam="erbaum"
     data-tip="Powered by Wiringbits"
     data-website="https://wiringbits.net"
     data-utm_medium="referrer">
@@ -27,6 +28,7 @@ All parameters of [Google dev tools campaign url builder](https://ga-dev-tools.w
 |Attribute         |Description                      |
 |-                 |-                                |
 |data-img_src      |Logo asset source                |
+|data-font_fam     |Tooltip font family
 |data-tip          |Hover tooltip                    |
 |data-website      |Utm owner                        |
 |data-utm_id       |Ads campaign id                  |
