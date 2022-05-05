@@ -25,13 +25,22 @@ function createElement() {
   const utmUrl = getUtmUrl()
 
   const container = document.createElement("div")
-  container.classList.add('wb', 'wb-container')
+  container.classList.add('wb-container')
   const { font_fam } = dataset
   if (font_fam) {
     container.style.fontFamily = font_fam
   }
   if (utmUrl) {
     container.onclick = () => window.location.href = utmUrl
+  }
+
+  const imgContainer = document.createElement("div")
+  imgContainer.classList.add('wb-img-container')
+  const imgEl = document.createElement('img')
+  imgEl.classList.add('wb-img')
+  const { img_src } = dataset
+  if (img_src) {
+    imgEl.src = img_src
   }
 
   const tooltipEl = document.createElement('div')
@@ -41,13 +50,8 @@ function createElement() {
     tooltipEl.textContent = tip
   }
 
-  const logoRender = document.createElement('img')
-  const { img_src } = dataset
-  if (img_src) {
-    logoRender.src = img_src
-  }
-
-  container.appendChild(logoRender)
+  imgContainer.appendChild(imgEl)
+  container.appendChild(imgContainer)
   container.appendChild(tooltipEl)
   document.body.appendChild(container)
 }

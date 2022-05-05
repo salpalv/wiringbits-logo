@@ -6,15 +6,6 @@ $shadow: 0.25rem 0.25rem 0.5rem rgb(0 0 0 / 0.25);
 $background: rgb(0 0 0 / 0.8);
 $blue: #39f;
 
-.wb {
-    font-weight: 400;
-    font-style: normal;
-
-    &,* {
-        transition: all 300ms ease-in-out;
-    }
-}
-
 @mixin addBorder {
     border-width: 1px;
     border-style: solid;
@@ -22,56 +13,66 @@ $blue: #39f;
 }
 
 .wb-container {
+    font-weight: 400;
+    font-style: normal;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: $size;
-    height: $size;
     position: fixed;
+    box-sizing:content-box;
     bottom: 1rem;
     right: 1rem;
     cursor: pointer;
-    border-radius: 9999px;
+}
+
+.wb-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: $padding;
+    width: $size;
+    height: $size;
+    border-radius: 9999px;
     box-shadow: $shadow;
     background: $background;
+    transition: all 250ms ease;
 
-    &:hover {
+    .wb-container:hover > & {
         transform: scale(1.2);
         background-color: white;
         @include addBorder();
     }   
 }
 
-img {
+.wb-img {
     filter: brightness(0) invert(1);
-    .wb-container:hover > & {
+    .wb-container:hover & {
        filter: none;
     }
 }
 
 .wb-tooltip {
+    background-color: white;
+    color: $blue;
     white-space: nowrap;
     opacity: 0%;
     position: absolute;
     right: 0;
-    transform: translateX(- calc( $size + 3*$padding ));
-    z-index: 10;
+    transform: translateX(- calc( $size + 4*$padding ));
+    z-index: 9999;
     box-shadow: $shadow;
     padding: 0.5rem;
     border-radius: 1rem;
     border-width: 1px;
     border-style: solid;
     border-color: lightgray;
-    background-color: $background;
     font-weight: 700;
-
-    color:white;
+    transition: opacity 200ms linear 250ms;
 
     .wb-container:hover > & {
         opacity: 100%;
-        background-color: white;
-        color: $blue;
+   
         @include addBorder();
     }
 }
+
