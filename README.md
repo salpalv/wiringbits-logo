@@ -11,8 +11,8 @@ Include the js script in a HTML script tag and pass [dataset](https://developer.
 
 ```html
 <script 
-    src="./main.bundle.js" 
-    data-img_url="./wiringbits-logo-mark-full-color-rgb.svg"
+    src="./main.js" 
+    data-img_src="https://wiringbits.net/assets/branding/wiringbits-logo-mark-full-color-rgb.svg"
     data-tip="Powered by Wiringbits"
     data-website="https://wiringbits.net"
     data-utm_medium="referrer">
@@ -44,3 +44,5 @@ The example above will generate the following url :
 ```
 https://wiringbits.net/?utm_source=localhost&utm_medium=referer
 ```
+
+##

@@ -3,7 +3,6 @@
 
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require("copy-webpack-plugin")
 
 /** @returns { Configuration } */
 module.exports = (env, argv) => {
@@ -25,16 +24,7 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                 template: "src/index.html",
                 inject: false
-            }),
-            new CopyPlugin({
-                // Copy CSinterface.js unmodified
-                patterns: [
-                    {
-                        from: "src/wiringbits-logo-mark-full-color-rgb.svg",
-                        to: "./"
-                    }
-                ],
-            }),
+            })
         ],
         output: {
             filename: 'main.js',
