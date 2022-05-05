@@ -6,8 +6,6 @@
 
 ![hover_screenshot](/docs/onHover.png)
 
-[![Edit wiringbits-logo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/saulpalv/wiringbits-logo/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
-
 ### Usage
 Include the js script in a HTML script tag and pass [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) parameters with `data-*` attributes
 
@@ -20,6 +18,8 @@ Include the js script in a HTML script tag and pass [dataset](https://developer.
     data-utm_medium="referrer">
 </script>
 ```
+
+[![Edit wiringbits-logo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/saulpalv/wiringbits-logo/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
 
 ### Props
 All parameters of [Google dev tools campaign url builder](https://ga-dev-tools.web.app/ga4/campaign-url-builder/) are supported
