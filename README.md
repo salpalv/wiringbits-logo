@@ -1,3 +1,7 @@
+[![Written in](https://badgen.net/badge/Written%20in/Typescript/blue?icon=typescript)](https://www.typescriptlang.org)
+
+[![Tested on](https://badgen.net/badge/Tested%20on/Chrome/purple?icon=chrome)](https://www.google.com/chrome)
+
 ## Wiringbits UTM campaign float logo script
 
 ![hover_screenshot](/docs/onHover.png)
