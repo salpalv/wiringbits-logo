@@ -1,31 +1,73 @@
 import './styles.scss';
-const logoSvg = require('./wiringbits-logo-mark-full-color-rgb.svg')
 
-const redirect = `https://wiringbits.net/?utm_medium=referrer&utm_source=${window.location.hostname}`
+type DatasetKeys =
+  'img_src' |
+  'tip' |
+  'website' |
+  'utm_id' |
+  'utm_medium' |
+  'utm_campaign' |
+  'utm_term' |
+  'utm_content' |
+  'utm_source'
 
-document.addEventListener("DOMContentLoaded", function (event) {
-  console.log('content loaded')
+type DataSet = {
+  [key in DatasetKeys]?: string
+}
 
-  createElement()
-})
+/** https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset */
+const dataset = document.currentScript!.dataset as DataSet
+
+document.addEventListener("DOMContentLoaded", () => createElement())
 
 function createElement() {
+  const utmUrl = getUtmUrl()
+
   const container = document.createElement("div")
   container.classList.add('wb', 'wb-container')
-  container.onclick = () => window.location.href = redirect
-
+  if (utmUrl) {
+    container.onclick = () => window.location.href = utmUrl
+  }
   const tooltipEl = document.createElement('div')
   tooltipEl.classList.add('wb-tooltip')
-  tooltipEl.textContent = 'Powered by Wiringbits'
+  const { tip } = dataset
+  if (tip) { tooltipEl.textContent = tip }
   container.appendChild(tooltipEl)
 
   document.body.appendChild(container)
 
   const logoRender = document.createElement('img')
-  const logoUri = inlineSvgToDataUri(btoa(logoSvg))
-  logoRender.src = logoUri
+  const { img_src } = dataset
+  if (img_src) { logoRender.src = img_src }
 
   container.appendChild(logoRender)
 }
 
-export const inlineSvgToDataUri = (inlineSvg: string) => `data:image/svg+xml;base64,${inlineSvg}`
+const utm_params: Array<DatasetKeys> = [
+  'utm_id',
+  'utm_medium',
+  'utm_campaign',
+  'utm_term',
+  'utm_content'
+]
+
+function getUtmUrl(): string | null {
+  const { website } = dataset
+  if (website) {
+    const UTM_URL = new URL(website)
+    UTM_URL.searchParams.append(
+      'utm_source',
+      dataset['utm_source'] ?? window.location.hostname
+    )
+    utm_params.forEach(utmParam => {
+      const utmValue = dataset[utmParam]
+      if (utmValue) {
+        UTM_URL.searchParams.append(utmParam, utmValue)
+      }
+    })
+    return UTM_URL.href
+  } else {
+    console.error('please provide website for utm url')
+    return null
+  }
+}

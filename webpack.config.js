@@ -3,7 +3,8 @@
 
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const CopyPlugin = require("copy-webpack-plugin")
+const tsLoader = require('ts-loader')
 
 /** @returns { Configuration } */
 module.exports = (env, argv) => {
@@ -24,9 +25,18 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 template: "src/index.html",
+                inject: false
             }),
-            new ForkTsCheckerWebpackPlugin(),
-        ].filter(Boolean),
+            new CopyPlugin({
+                // Copy CSinterface.js unmodified
+                patterns: [
+                    {
+                        from: "src/wiringbits-logo-mark-full-color-rgb.svg",
+                        to: "./"
+                    }
+                ],
+            }),
+        ],
         output: {
             filename: '[name].bundle.js',
             path: path.resolve(__dirname, 'dist'),
@@ -37,14 +47,7 @@ module.exports = (env, argv) => {
                 {
                     test: /\.tsx?$/,
                     exclude: /node_modules/,
-                    use: [
-                        {
-                            loader: require.resolve('ts-loader'),
-                            options: {
-                                transpileOnly: true,
-                            },
-                        },
-                    ]
+                    use: [require.resolve('ts-loader')]
                 },
                 {
                     test: /\.s?css$/i,
