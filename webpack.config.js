@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = (env, argv) => {
     const mode = argv.mode
     const isDevelopment = mode === "development"
+    console.log({ mode })
     return {
         target: 'web',
         mode: isDevelopment ? 'development' : 'production',
