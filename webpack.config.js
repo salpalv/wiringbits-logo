@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
         target: 'web',
         mode: isDevelopment ? 'development' : 'production',
         entry: './src/index.ts',
-        devtool: 'inline-source-map',
+        devtool: false,
         devServer: {
             hot: true,
             static: './dist',
