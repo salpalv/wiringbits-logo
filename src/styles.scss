@@ -1,28 +1,46 @@
 $size: 3rem;
 $padding: 0.5rem;
 /* offset-x | offset-y | blur-radius | color */
-$shadow: 0.25rem 0.25rem 0.5rem rgb(0 0 0 / 0.25);
+$shadow: 0rem 0.2rem 0.4rem rgb(0 0 0 / 0.4);
 
 $background: rgb(0 0 0 / 0.8);
+$background-hovered: white;
 $blue: #39f;
 
 @mixin addBorder {
-    border-width: 1px;
+    border-width: 0;
+    border-top-width: 1px;
+    //border-left-width: 1px;
     border-style: solid;
     border-color: lightgray;
 }
 
 .wb-container {
+    z-index: 9999;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+
     font-weight: 400;
     font-style: normal;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    box-sizing:content-box;
-    bottom: 1rem;
-    right: 1rem;
+
+    border-radius: 9999px;
+
+   // transition: all 0.6s ease-in-out;
+
+     transition-property: background-color, color,opacity, transform;
+     transition-duration: 0.6s, 0.3s, 0.4s, 0.6s;
+     transition-timing-function: ease-in-out;
     cursor: pointer;
+
+    background: $background;
+    &:hover {
+        background-color: $background-hovered;       
+    }
 }
 
 .wb-img-container {
@@ -32,14 +50,16 @@ $blue: #39f;
     padding: $padding;
     width: $size;
     height: $size;
-    border-radius: 9999px;
     box-shadow: $shadow;
-    background: $background;
-    transition: all 250ms ease;
+
+    border-radius: 9999px;
+
+    //    transition: all 250ms ease;
+    transition: inherit;
 
     .wb-container:hover > & {
         transform: scale(1.2);
-        background-color: white;
+        background-color: $background-hovered;
         @include addBorder();
     }   
 }
@@ -51,28 +71,35 @@ $blue: #39f;
     }
 }
 
-.wb-tooltip {
-    background-color: white;
-    color: $blue;
-    white-space: nowrap;
-    opacity: 0%;
+.wb-text-container {
+    z-index: -1;
     position: absolute;
     right: 0;
-    transform: translateX(- calc( $size + 4*$padding ));
-    z-index: 9999;
     box-shadow: $shadow;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    border-width: 1px;
-    border-style: solid;
-    border-color: lightgray;
-    font-weight: 700;
-    transition: opacity 200ms linear 250ms;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    border-bottom-left-radius: 0.55rem;
+    background-color: $background-hovered;
+
+    transition: inherit;
+    opacity: 0%;
+    width: fit-content;
+    padding-right: 1rem;
+    color:white;
+    background-color: rgb(0 0 0 / 0.2);
 
     .wb-container:hover > & {
+        transform: translateX(- calc( $size + 1rem ));
         opacity: 100%;
-   
+        background-color: $background-hovered;
+        color: $blue;
+
         @include addBorder();
     }
+}
+
+.wb-text {
+    white-space: nowrap;
+    font-weight: 700;
 }
 

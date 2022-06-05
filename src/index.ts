@@ -43,16 +43,20 @@ function createElement() {
     imgEl.src = img_src
   }
 
-  const tooltipEl = document.createElement('div')
-  tooltipEl.classList.add('wb-tooltip')
+  const textContainer = document.createElement('div')
+  textContainer.classList.add('wb-text-container')
+
+  const textEl = document.createElement('div')
+  textEl.classList.add('wb-text')
   const { tip } = dataset
   if (tip) {
-    tooltipEl.textContent = tip
+    textEl.textContent = tip
   }
 
   imgContainer.appendChild(imgEl)
   container.appendChild(imgContainer)
-  container.appendChild(tooltipEl)
+  textContainer.appendChild(textEl)
+  container.appendChild(textContainer)
   document.body.appendChild(container)
 }
 
@@ -80,7 +84,7 @@ function getUtmUrl(): string | null {
     })
     return UTM_URL.href
   } else {
-    console.error('please provide website for utm url')
+    console.error('wb: please provide website for utm url')
     return null
   }
 }
