@@ -30,8 +30,6 @@ $blue: #39f;
 
     border-radius: 9999px;
 
-   // transition: all 0.6s ease-in-out;
-
      transition-property: background-color, color,opacity, transform;
      transition-duration: 0.6s, 0.3s, 0.4s, 0.6s;
      transition-timing-function: ease-in-out;
@@ -44,6 +42,7 @@ $blue: #39f;
 }
 
 .wb-img-container {
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,9 +55,10 @@ $blue: #39f;
 
     //    transition: all 250ms ease;
     transition: inherit;
+    transition-delay: 0.35s;
 
     .wb-container:hover > & {
-        transform: scale(1.2);
+        transform: scale(1.25);
         background-color: $background-hovered;
         @include addBorder();
     }   
@@ -72,8 +72,8 @@ $blue: #39f;
 }
 
 .wb-text-container {
-    z-index: -1;
     position: absolute;
+    z-index: -1;
     right: 0;
     box-shadow: $shadow;
     padding: 0.5rem 0.75rem;
@@ -87,6 +87,7 @@ $blue: #39f;
     padding-right: 1rem;
     color:white;
     background-color: rgb(0 0 0 / 0.2);
+    pointer-events: none;
 
     .wb-container:hover > & {
         transform: translateX(- calc( $size + 1rem ));
