@@ -13,7 +13,8 @@ type DatasetKeys =
   'utm_source' |
   'padding' |
   'border_radius' |
-  'color'
+  'color' |
+  'disable_white_fill'
 
 type DataSet = {
   [key in DatasetKeys]?: string
@@ -22,7 +23,9 @@ type DataSet = {
 /** https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset */
 const dataset = document.currentScript!.dataset as DataSet
 
-const { font_fam, padding, border_radius, img_src, color, tip } = dataset
+const { font_fam, padding, border_radius, img_src, color, tip, disable_white_fill } = dataset
+
+console.log('wb: dataset', dataset)
 
 document.addEventListener("DOMContentLoaded", () => createElement())
 
@@ -44,7 +47,10 @@ function createElement() {
   imgContainer.style.padding = padding ? padding : '0.5rem'
 
   const imgEl = document.createElement('img')
-  imgEl.classList.add('wb-img')
+  if(disable_white_fill !== 'true') {
+    imgEl.classList.add('wb-img-filter')
+  }
+  imgEl.alt = 'logo'
   if (img_src) {
     imgEl.src = img_src
   }

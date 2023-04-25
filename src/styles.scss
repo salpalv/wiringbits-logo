@@ -38,8 +38,13 @@ $background-hovered: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    object-fit: contain;
     width: $size;
+    min-width: $size;
     height: $size;
+    min-height: $size;
+    aspect-ratio: 1/1;
+
     box-shadow: 0rem 0.2rem 0.6rem rgb(0 0 0 / 0.5);
 
     border-radius: inherit;
@@ -54,7 +59,7 @@ $background-hovered: white;
     }   
 }
 
-.wb-img {
+.wb-img-filter {
     filter: brightness(0) invert(1);
     .wb-container:hover & {
        filter: none;
