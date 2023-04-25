@@ -13,8 +13,9 @@ type DatasetKeys =
   'utm_source' |
   'padding' |
   'border_radius' |
-  'color' |
-  'disable_white_fill'
+  'font_color' |
+  'font_weight' |
+  'disable_monochrome'
 
 type DataSet = {
   [key in DatasetKeys]?: string
@@ -23,7 +24,7 @@ type DataSet = {
 /** https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset */
 const dataset = document.currentScript!.dataset as DataSet
 
-const { font_fam, padding, border_radius, img_src, color, tip, disable_white_fill } = dataset
+const { font_fam, padding, border_radius, img_src, font_color, font_weight, tip, disable_monochrome } = dataset
 
 console.log('wb: dataset', dataset)
 
@@ -34,6 +35,7 @@ function createElement() {
 
   const container = document.createElement("div")
   container.classList.add('wb-container')
+  container.style.backgroundColor = disable_monochrome !== 'true' ? '#37474f' : 'transparent'
   if (font_fam) {
     container.style.fontFamily = font_fam
   }
@@ -47,7 +49,8 @@ function createElement() {
   imgContainer.style.padding = padding ? padding : '0.5rem'
 
   const imgEl = document.createElement('img')
-  if(disable_white_fill !== 'true') {
+  imgEl.classList.add('wb-img')
+  if(disable_monochrome !== 'true') {
     imgEl.classList.add('wb-img-filter')
   }
   imgEl.alt = 'logo'
@@ -57,12 +60,13 @@ function createElement() {
 
   const textContainer = document.createElement('div')
   textContainer.classList.add('wb-text-container')
-  if (color) {
-    textContainer.style.setProperty('color', color)
+  if (font_color) {
+    textContainer.style.setProperty('color', font_color)
   }
 
   const textEl = document.createElement('div')
   textEl.classList.add('wb-text')
+  textEl.style.fontWeight = font_weight ? font_weight : '700'
   if (tip) {
     textEl.textContent = tip
   }
