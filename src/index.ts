@@ -35,7 +35,9 @@ function createElement() {
 
   const container = document.createElement("div")
   container.classList.add('wb-container')
-  container.style.backgroundColor = disable_monochrome !== 'true' ? '#37474f' : 'transparent'
+  if(disable_monochrome !== 'true') {
+    container.style.backgroundColor = 'transparent'
+  }
   if (font_fam) {
     container.style.fontFamily = font_fam
   }

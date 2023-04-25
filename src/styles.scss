@@ -24,8 +24,9 @@ $size: 3rem;
     transition-timing-function: ease-in-out;
     cursor: pointer;
 
+    background-color: #37474f !important;
     &:hover {
-        background-color: white;
+        background-color: white !important;
     }
 }
 
@@ -87,7 +88,7 @@ $size: 3rem;
     color: #000;
 
     transition: inherit;
-    background-color: $background-hovered;
+    background-color: white;
     transition-delay: 200ms;
 
     .wb-container:hover > & {
